@@ -109,7 +109,9 @@ li:hover {
     overflow: scroll;
     border-radius: 1rem;
 
-    text-align: center;
+    align-items: center;
+
+    
 
 
 

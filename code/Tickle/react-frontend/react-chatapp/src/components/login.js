@@ -97,9 +97,9 @@ const Login = () => {
 
     return (
         <div className="home-page">
-            {(localStorage.getItem('logoutFlag') == 'true') && <div onClick={setTimeout(()=>{
+            {(localStorage.getItem('logoutFlag') == 'true') && <div onClick={()=>{setTimeout(()=>{
                 document.getElementById('msg').style.display='none'
-            },3000)} id='msg' style={{
+            },3000)}} id='msg' style={{
                 background: '#63a69f',
                 color: '#fff',
                 padding: '10px',

@@ -111,7 +111,29 @@ export default function NewFriends() {
         })
     }
 
-    function handleReject(id){
+    function handleAccept(id){
+        
+        fetch('https://mern-api-9vf7.onrender.com/friends/accept',{
+    
+        headers:{
+            token: localStorage.getItem('token'),
+            id: id
+        }
+    
+        }).then(res=>res.json()).then(res=>{
+            if(res.status === 'successful')
+            {
+                getfriends();
+                getrequest();
+                sentrequest()
+                
+            }
+        })
+    
+        
+    
+      }
+      function handleReject(id){
         setFriendRequestsData(false)
         fetch('https://mern-api-9vf7.onrender.com/friends/reject',{
     
@@ -236,7 +258,9 @@ export default function NewFriends() {
                                     </div>
                                 </div>
                                     <div >
-                                        <div onClick={() => handleSendRequest(elem._id)} className='send'>Send
+                                        <div onClick={(e) => {handleSendRequest(elem._id);
+                                        e.target.innerText='Sent'
+                                        }} className='send'>Send
                                         </div>
                                     </div></div>
 
@@ -317,10 +341,17 @@ export default function NewFriends() {
                         </div>
                         <div style={{display:'flex', justifyContent:'space-between', width:'75%', alignItems:'center'}}>
                         <div>{elem.username}</div>
+                        <div style={{display:'flex', gap:'1rem'}}>
+                        <div className='send' onClick={() => {
+                            handleAccept(elem._id)
+
+                        }}> Accept </div>
                         <div className='send' onClick={() => {
                             handleReject(elem._id)
 
                         }}> Reject </div>
+                        </div>
+                        
                         </div>
 
                     </div>)
