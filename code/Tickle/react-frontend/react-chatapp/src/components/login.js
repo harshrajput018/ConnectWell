@@ -61,7 +61,7 @@ const Login = () => {
                         email: '',
                         password: '',
                     })
-                    localStorage.setItem('logoutFlag','true');
+                    localStorage.setItem('signup','true');
                     
                 }
             })
@@ -80,6 +80,7 @@ const Login = () => {
                 }
             });
 
+            localStorage.setItem('signup','false');
 
         }
 
@@ -98,6 +99,23 @@ const Login = () => {
     return (
         <div className="home-page">
             {(localStorage.getItem('logoutFlag') == 'true') && <div onClick={()=>{setTimeout(()=>{
+                document.getElementById('msg').style.display='none'
+            },3000)}} id='msg' style={{
+                background: '#63a69f',
+                color: '#fff',
+                padding: '10px',
+                textAlign: 'center',
+                position: 'fixed',
+                top: '0',
+                left: '0',
+                right: '0',
+                zIndex: '999',
+                animation: 'slideIn 0.5s ease-in-out',
+                fontFamily: 'Arial, sans-serif',
+            }}>
+                Successfully Logged Out
+            </div>}
+      {(localStorage.getItem('signup') == 'true') && <div onClick={()=>{setTimeout(()=>{
                 document.getElementById('msg').style.display='none'
             },3000)}} id='msg' style={{
                 background: '#63a69f',
